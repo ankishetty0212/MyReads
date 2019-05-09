@@ -6,11 +6,11 @@ class BookShelfChanger extends Component {
         this.state = { value: this.props.book.shelf !== '' ? this.props.book.shelf : 'none' };
     }
     
-    handleChangeShelf(){
+    handleChangeShelf = (event) =>{
         console.log('In handleChangeShelf method');
         console.log('event.target.value: ', event.target.value);
         this.setState({value: event.target.value});
-        this.props.updateBookShelf(this.props.book, this.state.value)
+        this.props.updateBookShelf(this.props.book, event.target.value)
     }
 
     render() {

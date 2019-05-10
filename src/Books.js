@@ -16,7 +16,12 @@ class Books extends Component {
                     <BookShelfChanger book={book} updateBookShelf={updateBookShelf}/>
                 </div>
                 <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors}</div>
+                <div className="book-authors">
+                    {book.authors.map((author) => (
+                        `${author}, `
+                    ))
+                    }
+                </div>
             </div>
 
 

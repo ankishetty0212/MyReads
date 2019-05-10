@@ -30,12 +30,10 @@ class BooksApp extends React.Component {
     })
   }
 
-  updateBookShelf(book,shelf){
+  updateBookShelf = (book,shelf) => {
     console.log('In App.js updateBookShelf()', book, 'shelf:', shelf)
     BooksAPI.update(book, shelf);
-    
-    //update state
-    //this.getAllBooks()
+    this.getAllBooks();
   }
 
   toggleSearchFlag = (searchFlag) => {
@@ -45,14 +43,14 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log('in App.js render', this.state.showSearchPage)
-    console.log('state.books',  this.state.books)
     const {showSearchPage, books} = this.state
 
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks showSearchPage={this.state.showSearchPage} toggleSearchFlag={this.toggleSearchFlag} />
+          <SearchBooks showSearchPage={this.state.showSearchPage} toggleSearchFlag={this.toggleSearchFlag} 
+          booksFromShelf={books} updateBookShelf={this.updateBookShelf}
+          />
         ) : (
           <div className="list-books">
             <div className="list-books-title">

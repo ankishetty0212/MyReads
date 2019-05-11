@@ -14,10 +14,10 @@ class SearchBooks extends Component {
         this.setState(() => ({
             query: query
         }))
-        this.search(this.state.query)
+        this.search(query)
     }
 
-    search() {
+    search(query) {
         BooksAPI.search(this.state.query, 15)
             .then((books) => {
                 this.setState(() => ({

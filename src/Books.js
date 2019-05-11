@@ -3,23 +3,25 @@ import BookShelfChanger from './BookShelfChanger';
 
 class Books extends Component {
     updatedBookObj = {};
-    
-    updateShelfProp(){
-        this.updatedBookObj = this.props.book
-        console.log('this.props.booksFromShelf title', this.props.booksFromShelf);
-        console.log('this.updatedBookObj', this.updatedBookObj);
 
-        if(this.props.book.shelf === undefined ){
-            //While navigating through Search page
-            this.props.booksFromShelf.map((bookFromShelf) => (
-                bookFromShelf.id === this.props.book.id 
-                    ? this.updatedBookObj.shelf = bookFromShelf.shelf
-                    : this.updatedBookObj.shelf = 'none'
-            ))
+    updateShelfProp() {
+        this.updatedBookObj = this.props.book
+
+        // set current shelf to none as default
+        let currentShelf = 'none';
+
+        // if book is in current list, set current shelf to book.shelf
+        for (let book of this.props.booksFromShelf) {
+            if (book.id === this.props.book.id) {
+                currentShelf = book.shelf;
+                break;
+            }
         }
+        this.updatedBookObj.shelf = currentShelf;
     }
 
     render() {
+
         this.updateShelfProp()
         return (
             <div>
@@ -27,7 +29,7 @@ class Books extends Component {
                     <div className="book-cover"
                         style={{
                             width: 128, height: 193,
-                            backgroundImage: `url(${ this.updatedBookObj.imageLinks !== undefined && 
+                            backgroundImage: `url(${this.updatedBookObj.imageLinks !== undefined &&
                                 this.updatedBookObj.imageLinks.smallThumbnail})`
                         }}>
                     </div>

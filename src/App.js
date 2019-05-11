@@ -31,14 +31,13 @@ class BooksApp extends React.Component {
   }
 
   updateBookShelf = (book,shelf) => {
-    console.log('In App.js updateBookShelf()', book, 'shelf:', shelf)
     BooksAPI.update(book, shelf);
     this.getAllBooks();
   }
 
   render() {
     const {books}= this.state
-    console.log('books in App render: ',books)
+
     return (
       <div className="app">
       <Route exact path='/' render={() => (

@@ -4,7 +4,7 @@ import Books from './Books';
 class BookShelf extends Component {
 
     render() {
-        const { books, updateBookShelf } = this.props
+        const { books, updateBookShelf, booksFromShelf } = this.props
         const bookShelfMap = {
             'currentlyReading': 'Currently Reading',
             'wantToRead': 'Want To Read',
@@ -23,7 +23,7 @@ class BookShelf extends Component {
                                         book.shelf === key &&
                                         <li key={book.id}>
                                             <div className="book" key={book.id}>
-                                                <Books book={book} updateBookShelf={updateBookShelf}/>
+                                                <Books book={book} updateBookShelf={updateBookShelf} booksFromShelf={booksFromShelf}/>
                                             </div>
                                         </li>
                                     ))

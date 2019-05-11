@@ -2,22 +2,40 @@ import React, { Component } from 'react';
 import BookShelfChanger from './BookShelfChanger';
 
 class Books extends Component {
+    updatedBookObj = {};
+    
+    updateShelfProp(){
+        this.updatedBookObj = this.props.book
+        console.log('this.props.booksFromShelf title', this.props.booksFromShelf);
+        console.log('this.updatedBookObj', this.updatedBookObj);
+
+        if(this.props.book.shelf === undefined ){
+            //While navigating through Search page
+            this.props.booksFromShelf.map((bookFromShelf) => (
+                bookFromShelf.id === this.props.book.id 
+                    ? this.updatedBookObj.shelf = bookFromShelf.shelf
+                    : this.updatedBookObj.shelf = 'none'
+            ))
+        }
+    }
+
     render() {
-        const {book, updateBookShelf} = this.props
+        this.updateShelfProp()
         return (
             <div>
                 <div className="book-top">
                     <div className="book-cover"
                         style={{
                             width: 128, height: 193,
-                            backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                            backgroundImage: `url(${ this.updatedBookObj.imageLinks !== undefined && 
+                                this.updatedBookObj.imageLinks.smallThumbnail})`
                         }}>
                     </div>
-                    <BookShelfChanger book={book} updateBookShelf={updateBookShelf}/>
+                    <BookShelfChanger book={this.updatedBookObj} updateBookShelf={this.props.updateBookShelf} />
                 </div>
-                <div className="book-title">{book.title}</div>
+                <div className="book-title">{this.updatedBookObj.title}</div>
                 <div className="book-authors">
-                    {book.authors.map((author) => (
+                    {this.updatedBookObj.authors !== undefined && this.updatedBookObj.authors.map((author) => (
                         `${author}, `
                     ))
                     }

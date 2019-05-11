@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Books from './Books';
 import * as BooksAPI from './utils/BooksAPI';
+import { Link } from 'react-router-dom';
 
 class SearchBooks extends Component {
     state = {
         query: '',
-        books: [],
-        showSearchPage: false
+        books: []
     }
 
+    
     setQueryCallSearch = (query) => {
         this.setState(() => ({
             query: query
@@ -25,10 +26,9 @@ class SearchBooks extends Component {
             })
     }
 
-
     render() {
         const { query, books } = this.state
-        const { showSearchPage, toggleSearchFlag, booksFromShelf, updateBookShelf } = this.props
+        const { booksFromShelf, updateBookShelf } = this.props
 
         const showingBooks = query === ''
             ? '' : books;
@@ -37,11 +37,17 @@ class SearchBooks extends Component {
             <div>
                 <div className="search-books">
                     <div className="search-books-bar">
-                        <a className="close-search" onClick={() => { toggleSearchFlag(false) }}>Close</a>
+                        <Link
+                            to='/'
+                            className="close-search"
+                        >
+                            Close
+                        </Link>
+
                         <div className="search-books-input-wrapper">
                             <input type="text" placeholder="Search by title or author"
                                 value={query}
-                                onChange={(event) => { this.setQueryCallSearch(event.target.value) }}
+                                onChange={(event) => {this.setQueryCallSearch(event.target.value)}}
                             />
                         </div>
                     </div>
@@ -51,7 +57,7 @@ class SearchBooks extends Component {
                                 showingBooks.map((book) => (
                                     <li key={book.id}>
                                         <div className="book">
-                                            <Books book={book} updateBookShelf={updateBookShelf} />
+                                            <Books book={book} updateBookShelf={updateBookShelf}  booksFromShelf={booksFromShelf}/>
                                         </div>
                                     </li>
                                 ))}

@@ -6,8 +6,24 @@ To run this project on your local follow the below steps:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
-###### INITIAL PROJECT INFORMATION ###########
 
+## PROJECT INFORMATION
+The **MyReads** App is an application where you can track the books that you have come across by categorizing 
+them into different shelves viz. _'Currently Reading'_, _'Read'_, _'Want to Read'_.
+
+There are 2 sections to this application:
+1. Main Shelf page   2. Search page
+
+On the **Main Shelf** page, you can view all the books that exist in different shelves. 
+There is a shelf changer functionality available in the form of a dropdown button next to each book that allows you to move books across shelves or remove it from the shelf altogether by choosing the 'none' option.
+
+On the **Search** page, you can search for books and add them to you shelf. However, the search is limited to a particular set of search terms(Please refer to SEARC_TERMS.md for allowed keywords). 
+The shelf changer functionality available on the Main Shelf page is also available on the Search page.
+
+**Technologies/APIs Used:**
+1. ReactJS
+2. Node & NPM
+3. BooksAPI provided by Udacity to search & update books.
 
 ## What You're Getting
 ```bash

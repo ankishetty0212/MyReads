@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 class BookShelfChanger extends Component {
     
     handleChangeShelf = (event) =>{
-        console.log('In handleChangeShelf method');
-        console.log('event.target.value: ', event.target.value); 
-        console.log('this.props.book: ', this.props.book); 
         this.setState({value: event.target.value});
         this.props.updateBookShelf(this.props.book, event.target.value)
     }
